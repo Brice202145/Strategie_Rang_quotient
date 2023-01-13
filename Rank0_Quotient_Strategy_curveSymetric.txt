@@ -1,0 +1,50 @@
+Etape1: Transformation de l'équation du quarticque en forme admettant une symetrique
+P2<x,y,z> := ProjectiveSpace(Rationals(),2);
+D:=[];
+Quotient0 := [list des 100milles courbes]
+sym := [[-x,y,z],[x,-y,z],[x,y,-z]];  
+for i in [1..#Quotient0] do 
+F := C[i];
+for a1,a2,a3,a4,a5,a6,a7,a8,a9 in [1,0,-1] do
+A := Matrix(Rationals(),3,3,[a1,a2,a3,a4,a5,a6,a7,a8,a9]);
+if not IsSingular(A) then
+H := Evaluate(F,[a1*x+a2*y+a3*z,a4*x+a5*y+a6*z,a7*x+a8*y+a9*z]);
+
+for s in sym do
+	if Evaluate(H,s) eq H then
+        
+		CC := Curve(P2,H);
+		phi := iso<CC -> CC | s,s>;
+        G := AutomorphismGroup(CC,[phi]);
+        Q,m := CurveQuotient(G);   
+        if Rank(Jacobian(Q)) lt Genus(Q) and Genus(Q) lt 1 then
+        Append(~D H);
+        break a1; break a2; break a3; break a4; break a5; break a6; break a7; break a8; break a9;
+        end if;
+        
+end if;
+end for;
+end if;
+end for;
+end for;
+print D;
+// Etape2:  Computing rational points on plane curve admiting symetries
+P2<x,y,z> := ProjectiveSpace(Rationals(),2);
+for H in D do
+C := Curve(P2,[H]);
+Sym:=[[-x,y,z],[x,-y,z],[x,y,-z]]; 
+for s in Sym do
+ phi := iso<C -> C | s,s>; 
+G1 := AutomorphismGroup(C,[phi]);
+Q1,m1 := CurveQuotient(G1);
+assert Genus(Q1) ge 1 ;
+if RankBound(Jacobian(Q1)) eq 0 then
+    Q := Q1; m := m1;   
+end if;
+    print Q;
+	assert #Points(Q : Bound:=1000) eq #TorsionSubgroup(Jacobian(Q));
+    for i in [1..#Points(Q: Bound:=100)] do
+    RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
+end for;
+end if;
+end for;
