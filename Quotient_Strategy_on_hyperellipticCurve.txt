@@ -1,8 +1,6 @@
-function strategy_quotient(f)
-
-/*Returns the rational points on the curve C of genus  3 of which J is isogenous to ExA, where A is an abelian variety of dimension 2, and E elliptic curve of  Mordell-Weil rank aq 0*/
-P2<x, y, z> := ProjectiveSpace(Rationals(),2);
-C := Curve(P2,Numerator(Evaluate(f,P2.1/P2.3)*P2.3^8-P2.3^6*P2.2^2));
+P2<x,y,z>:= ProjectiveSpace(Rationals(),2);
+f:=x^8+2*x^4*z^4-4*x^2*z^6+z^8-y^2*z^6;
+C := Curve(P2,[f]);
 phi1 := iso<C -> C | [-x,y,z],[-x,y,z]>; 
 phi2 := iso<C -> C | [-x,-y,z],[-x,-y,z]>;
 G1 := AutomorphismGroup(C,[phi1]);
@@ -15,5 +13,24 @@ if RankBound(Jacobian(E)) eq 0 then
     for i in [1..#Points(Q: Bound:=100)] do
     RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
    end for;
+end if;
+####################################################"
+function strategy_quotient(f);
 
+/*Returns the rational points on the curve C of genus  3 of which J is isogenous to ExA, where A is an abelian variety of dimension 2, and E elliptic curve of  Mordell-Weil rank aq 0*/
+P2:= ProjectiveSpace(Rationals(),2);
+C := Curve(P2,Numerator(Evaluate(f,P2.1/P2.3)*P2.3^8-P2.3*P2.2^2));
+phi1 := iso<C -> C | [-x,y,z],[-x,y,z]>; 
+phi2 := iso<C -> C | [-x,-y,z],[-x,-y,z]>;
+G1 := AutomorphismGroup(C,[phi1]);
+G2 := AutomorphismGroup(C,[phi2]); 
+E, m1 := CurveQuotient(G1);
+A, m2 := CurveQuotient(G2);
+if RankBound(Jacobian(E)) eq 0 then
+     Q := E; m := m1;
+    assert #Points(Q : Bound:=1000) eq #TorsionSubgroup(Jacobian(Q));
+    for i in [1..#Points(Q: Bound:=100)] do
+    RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
+   end for;
+end if;
 end function; 
