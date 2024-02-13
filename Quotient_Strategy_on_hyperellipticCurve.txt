@@ -1,33 +1,19 @@
-A<x,y> := AffineSpace(Rationals(), 2);
-L:=[x^8 + 2*x^4 - 4*x^2 + 1, x^8 + 2*x^4 + 4*x^2 + 1, x^8 - 2*x^6 - x^4 - 2*x^2 + 1, x^8 + 2*x^6 - x^4 + 2*x^2 + 1, x^8 + 2*x^6 + 3*x^4 - 2*x^2 + 1, x^8 + 2*x^6 - 5*x^4 + 2*x^2 + 1, x^8 + 2*x^6 + 7*x^4 + 6*x^2 + 1, x^8 - 2*x^6 - 5*x^4 - 2*x^2 + 1, x^8 - 2*x^6 + 7*x^4 - 6*x^2 + 1, -4*x^8 + 9*x^4 - 6*x^2 + 1, x^8 + 6*x^4 - 4*x^2 + 1, x^8 - 8*x^6 + 18*x^4 - 12*x^2 + 1, x^8 + 4*x^6 - 6*x^4 + 1, x^8 - 6*x^4 - 4*x^2 + 1, x^8 + 8*x^6 + 18*x^4 + 12*x^2 + 1, x^8 + 6*x^4 + 4*x^2 + 1, x^8 + 4*x^6 - 2*x^4 + 1, x^8 + 8*x^6 + 22*x^4 + 20*x^2 + 1, x^8 - 4*x^6 + 10*x^4 - 8*x^2 + 1, x^8 - 8*x^6 + 22*x^4 - 20*x^2 + 1, x^8 - 2*x^4 - 4*x^2 + 1, x^8 + 4*x^6 + 10*x^4 + 8*x^2 + 1, x^8 - 4*x^6 + 2*x^4 - 4*x^2 + 1, x^8 + 4*x^6 + 2*x^4 + 4*x^2 + 1, -4*x^8 + 4*x^6 + x^4 - 2*x^2 + 1, -4*x^8 - 8*x^6 + 13*x^4 - 6*x^2 + 1, -4*x^8 - 4*x^6 + x^4 + 2*x^2 + 1, x^8 + 2*x^6 + 3*x^4 + 6*x^2 + 1, x^8 - 6*x^6 + 15*x^4 - 14*x^2 + 1, x^8 - 2*x^6 + 3*x^4 - 6*x^2 + 1, x^8 + 6*x^6 + 15*x^4 + 14*x^2 + 1, 4*x^8 - 4*x^6 + x^4 - 2*x^2 + 1, 4*x^8 + 4*x^6 + x^4 + 2*x^2 + 1, x^8 + 10*x^6 - 5*x^4 - 2*x^2 + 1, x^8 + 2*x^6 - 5*x^4 - 10*x^2 + 1, x^8 + 2*x^6 + 7*x^4 - 6*x^2 + 1, x^8 + 6*x^6 + 7*x^4 - 2*x^2 + 1, x^8 + 6*x^6 + 7*x^4 + 6*x^2 + 1, x^8 - 6*x^6 + 7*x^4 - 6*x^2 + 1, x^8 - 6*x^4 + 1, x^8 + 6*x^4 + 1, x^8 + 2*x^6 + 7*x^4 + 2*x^2 + 1, x^8 + 2*x^6 - 5*x^4 - 2*x^2 + 1, x^8 - 2*x^6 + 7*x^4 - 2*x^2 + 1, 4*x^8 - 12*x^6 + 12*x^4 - 4*x^2 + 1, 4*x^8 + 12*x^6 + 12*x^4 + 4*x^2 + 1, 4*x^8 - 4*x^6 + 1, 4*x^8 + 4*x^6 + 1, x^8 - 2*x^6 + 11*x^4 - 6*x^2 + 1, x^8 + 2*x^6 + 11*x^4 + 6*x^2 + 1, x^8 + 4*x^6 - 2*x^4 - 4*x^2 + 1, x^8 - 4*x^6 + 10*x^4 - 4*x^2 + 1, x^8 + 4*x^6 + 10*x^4 + 4*x^2 + 1, x^8 + 4*x^6 + 6*x^4 - 4*x^2 + 1, x^8 - 6*x^6 + 11*x^4 - 10*x^2 + 1, x^8 + 6*x^6 + 11*x^4 + 10*x^2 + 1, 4*x^8 - 12*x^6 + 16*x^4 - 8*x^2 + 1, 4*x^8 + 12*x^6 + 16*x^4 + 8*x^2 + 1, 4*x^8 - 4*x^6 + 4*x^4 - 4*x^2 + 1, 4*x^8 + 4*x^6 + 4*x^4 + 4*x^2 + 1, -4*x^8 - 12*x^6 - 8*x^4 + 1, -4*x^8 + 12*x^6 - 8*x^4 + 1, -4*x^8 - 20*x^6 - 32*x^4 - 16*x^2 + 1, -4*x^8 + 4*x^6 + 4*x^4 - 4*x^2 + 1, x^8 + 2*x^6 - x^4 - 6*x^2 + 1, x^8 + 6*x^6 - x^4 - 2*x^2 + 1, x^8 + 4*x^6 + 6*x^4 + 8*x^2 + 1, x^8 - 4*x^6 + 6*x^4 - 8*x^2 + 1, -4*x^8 - 8*x^6 - 4*x^4 + 1, -4*x^8 + 8*x^6 - 4*x^4 + 1, -4*x^8 + 4*x^4 - 4*x^2 + 1, 4*x^8 - 8*x^6 + 9*x^4 - 6*x^2 + 1, 4*x^8 + 8*x^6 + 9*x^4 + 6*x^2 + 1, x^8 + 2*x^6 + 3*x^4 - 6*x^2 + 1, x^8 - 6*x^6 + 15*x^4 - 10*x^2 + 1, x^8 - 2*x^6 - 9*x^4 - 6*x^2 + 1, x^8 + 6*x^6 + 15*x^4 + 10*x^2 + 1, x^8 + 6*x^6 - 9*x^4 + 2*x^2 + 1, x^8 + 6*x^6 + 3*x^4 - 2*x^2 + 1, 4*x^8 - 8*x^6 + x^4 + 2*x^2 + 1, 4*x^8 + 8*x^6 + x^4 - 2*x^2 + 1, -4*x^8 + x^4 + 2*x^2 + 1, -4*x^8 + x^4 - 2*x^2 + 1, 4*x^8 + 1, -4*x^8 + 8*x^6 - 4*x^2 + 1, -4*x^8 + 1, 4*x^8 + x^4 - 2*x^2 + 1, 4*x^8 + x^4 + 2*x^2 + 1, x^8 - 6*x^6 + 15*x^4 - 6*x^2 + 1, x^8 + 6*x^6 + 3*x^4 - 6*x^2 + 1, x^8 + 6*x^6 + 15*x^4 + 6*x^2 + 1, 4*x^8 - 7*x^4 + 2*x^2 + 1, -4*x^8 + 16*x^6 - 7*x^4 - 2*x^2 + 1, 4*x^8 - 7*x^4 - 2*x^2 + 1, -4*x^8 - 16*x^6 - 7*x^4 + 2*x^2 + 1, 4*x^8 + 4*x^4 - 4*x^2 + 1, 4*x^8 + 4*x^4 + 4*x^2 + 1, 4*x^8 - 8*x^6 + 4*x^4 + 1, 4*x^8 + 8*x^6 + 4*x^4 + 1, x^8 + 2*x^6 - 5*x^4 - 6*x^2 + 1, x^8 + 10*x^6 + 19*x^4 + 10*x^2 + 1, x^8 + 10*x^6 + 31*x^4 + 30*x^2 + 1, x^8 - 10*x^6 + 19*x^4 - 10*x^2 + 1, x^8 - 10*x^6 + 31*x^4 - 30*x^2 + 1, x^8 + 2*x^6 + 7*x^4 - 2*x^2 + 1, x^8 + 6*x^6 - 5*x^4 - 2*x^2 + 1, -4*x^8 + 8*x^6 - 7*x^4 + 2*x^2 + 1, -4*x^8 - 8*x^6 - 7*x^4 - 2*x^2 + 1, x^8 - 4*x^6 + 14*x^4 - 8*x^2 + 1, x^8 + 12*x^6 - 10*x^4 + 1, x^8 + 4*x^6 + 2*x^4 - 8*x^2 + 1, x^8 + 8*x^6 + 2*x^4 - 4*x^2 + 1, x^8 - 10*x^4 - 12*x^2 + 1, x^8 + 4*x^6 + 14*x^4 + 8*x^2 + 1, 4*x^8 - 16*x^6 + 17*x^4 - 6*x^2 + 1, 4*x^8 + 16*x^6 + 17*x^4 + 6*x^2 + 1, 4*x^8 - 12*x^6 + 4*x^4 + 8*x^2 + 1, 4*x^8 + 12*x^6 + 4*x^4 - 8*x^2 + 1, 4*x^8 - 20*x^6 + 28*x^4 - 8*x^2 + 1, 4*x^8 + 20*x^6 + 28*x^4 + 8*x^2 + 1, 4*x^8 - 28*x^6 + 24*x^4 - 8*x^2 + 1, 4*x^8 + 28*x^6 + 24*x^4 + 8*x^2 + 1, -4*x^8 - 12*x^6 - 12*x^4 - 4*x^2 + 1, -4*x^8 - 36*x^6 - 20*x^4 + 1, -4*x^8 + 36*x^6 - 20*x^4 + 1, -4*x^8 - 4*x^6 + 1, 4*x^8 + 16*x^6 + 13*x^4 - 6*x^2 + 1, 4*x^8 - 16*x^6 + 13*x^4 + 6*x^2 + 1, x^8 + 4*x^6 + 18*x^4 + 8*x^2 + 1, x^8 - 4*x^6 + 18*x^4 - 8*x^2 + 1];
-for i in [1..#L] do 
-F:=y^2-(L[i]);
-C1 := Curve(A,[F]);
-C<x,y,z> := ProjectiveClosure(C1);
-assert #Points(C : Bound:=100) ge 1;
-phi1 := iso<C -> C | [-x,y,z],[-x,y,z]>;
+function strategy_quotient(f)
+
+/*Returns the rational points on the curve C of genus  3 of which J is isogenous to ExA, where A is an abelian variety of dimension 2, and E elliptic curve of  Mordell-Weil rank aq 0*/
+P2<x, y, z> := ProjectiveSpace(Rationals(),2);
+C := Curve(P2,Numerator(Evaluate(f,P2.1/P2.3)*P2.3^8-P2.3^6*P2.2^2));
+phi1 := iso<C -> C | [-x,y,z],[-x,y,z]>; 
 phi2 := iso<C -> C | [-x,-y,z],[-x,-y,z]>;
 G1 := AutomorphismGroup(C,[phi1]);
 G2 := AutomorphismGroup(C,[phi2]); 
-Q1,m1 := CurveQuotient(G1);
-Q2,m2 := CurveQuotient(G2);
-if RankBound(Jacobian(Q1))*RankBound(Jacobian(Q2)) ge 1 then 
-        print "The ranks are too large";
-else 
-    print "One of the quotients has rank 0";
-    print "The rank of the Jacobian is ",RankBound(Jacobian(Q1))+RankBound(Jacobian(Q2));
-if RankBound(Jacobian(Q1)) eq 0 then
-    Q := Q1; m := m1;
-    print Q;
+E, m1 := CurveQuotient(G1);
+A, m2 := CurveQuotient(G2);
+if RankBound(Jacobian(E)) eq 0 then
+     Q := E; m := m1;
     assert #Points(Q : Bound:=1000) eq #TorsionSubgroup(Jacobian(Q));
     for i in [1..#Points(Q: Bound:=100)] do
     RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
    end for;
-else Q := Q2; m := m2;
-      print Q;
-    for i in [1..#Points(Q: Bound:=100)] do
-    RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
-    end for;
-end if;
-end if;
-end for;
+
+end function; 
