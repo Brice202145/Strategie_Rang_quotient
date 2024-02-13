@@ -1,50 +1,82 @@
-Etape1: Transformation de l'équation du quarticque en forme admettant une symetrique
-P2<x,y,z> := ProjectiveSpace(Rationals(),2);
-D:=[];
-Quotient0 := [list des 100milles courbes]
-sym := [[-x,y,z],[x,-y,z],[x,y,-z]];  
-for i in [1..#Quotient0] do 
-F := C[i];
-for a1,a2,a3,a4,a5,a6,a7,a8,a9 in [1,0,-1] do
-A := Matrix(Rationals(),3,3,[a1,a2,a3,a4,a5,a6,a7,a8,a9]);
-if not IsSingular(A) then
-H := Evaluate(F,[a1*x+a2*y+a3*z,a4*x+a5*y+a6*z,a7*x+a8*y+a9*z]);
-
-for s in sym do
-	if Evaluate(H,s) eq H then
-        
-		CC := Curve(P2,H);
-		phi := iso<CC -> CC | s,s>;
-        G := AutomorphismGroup(CC,[phi]);
-        Q,m := CurveQuotient(G);   
-        if Rank(Jacobian(Q)) lt Genus(Q) and Genus(Q) lt 1 then
-        Append(~D H);
-        break a1; break a2; break a3; break a4; break a5; break a6; break a7; break a8; break a9;
+P2<x,y,z>:= ProjectiveSpace(Rationals(),2);
+  f :=input(equation of curve C;
+  sym := [[-x,y,z],[x,-y,z],[x,y,-z]]; 
+  if  Evaluate(f,[-x,y,z]) eq f or Evaluate(f,[x,-y,z]) eq f or Evaluate(f,[x,y,-z]) eq f then
+       for s in sym do 
+         if Evaluate(f,s)  eq f then
+            CC := Curve(P2,[f]);
+            phi := iso<CC -> CC | s,s>;
+            G := AutomorphismGroup(CC,[phi]);
+            Q,m := CurveQuotient(G);
+           end if; 
+         end for;
+   else
+      for a1,a2,a3,a4,a5,a6,a7,a8,a9 in [1,0,-1] do
+            A := Matrix(Rationals(),3,3,[a1,a2,a3,a4,a5,a6,a7,a8,a9]);
+           if not IsSingular(A) then
+              H := Evaluate(f,[a1*x+a2*y+a3*z,a4*x+a5*y+a6*z,a7*x+a8*y+a9*z]);
+               for s in sym do 
+	       if Evaluate(H,s) eq H then
+                  CC := Curve(P2,[H]);
+		  phi := iso<CC -> CC | s,s>;
+                  G := AutomorphismGroup(CC,[phi]);
+                  Q,m := CurveQuotient(G); 
+           end if;
+         end for;
+           end if;
+   break a1; break a2; break a3; break a4; break a5; break a6; break a7; break a8; break a9;
+        end for;
         end if;
-        
+if Rank(Jacobian(Q))  eq 0 then
+      assert #Points(Q : Bound:=1000) eq #TorsionSubgroup(Jacobian(Q));
+      for i in [1..#Points(Q: Bound:=100)] do
+         RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
+          end for;
 end if;
-end for;
+
+
+#############################################################################################################################################################################################
+
+function strategy_quotient_on_quartic(F);
+  P2<x,y,z>:= ProjectiveSpace(Rationals(),2);
+  f :=Numerator(Evaluate(F, [P2.1/P2.3, P2.2/P2.3])*P2.3^4);
+  sym := [[-x,y,z],[x,-y,z],[x,y,-z]]; 
+  if  Evaluate(f,[-x,y,z]) eq f or Evaluate(f,[x,-y,z]) eq f or Evaluate(f,[x,y,-z]) eq f then
+       for s in sym do 
+         if Evaluate(f,s)  eq f then
+            CC := Curve(P2,[f]);
+            phi := iso<CC -> CC | s,s>;
+            G := AutomorphismGroup(CC,[phi]);
+            Q,m := CurveQuotient(G);
+           end if; 
+         end for;
+   else
+      for a1,a2,a3,a4,a5,a6,a7,a8,a9 in [1,0,-1] do
+            A := Matrix(Rationals(),3,3,[a1,a2,a3,a4,a5,a6,a7,a8,a9]);
+           if not IsSingular(A) then
+              H := Evaluate(f,[a1*x+a2*y+a3*z,a4*x+a5*y+a6*z,a7*x+a8*y+a9*z]);
+               for s in sym do 
+	       if Evaluate(H,s) eq H then
+                  CC := Curve(P2,[H]);
+		  phi := iso<CC -> CC | s,s>;
+                  G := AutomorphismGroup(CC,[phi]);
+                  Q,m := CurveQuotient(G); 
+           end if;
+         end for;
+           end if;
+   break a1; break a2; break a3; break a4; break a5; break a6; break a7; break a8; break a9;
+        end for;
+        end if;
+    Rank(Jacobian(Q));
+if Rank(Jacobian(Q))  eq 0 and Genus(Q) lt 1 then
+      assert #Points(Q : Bound:=1000) eq #TorsionSubgroup(Jacobian(Q));
+      for i in [1..#Points(Q: Bound:=100)] do
+       Q_Points:=  RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
+          end for;
 end if;
-end for;
-end for;
-print D;
-// Etape2:  Computing rational points on plane curve admiting symetries
-P2<x,y,z> := ProjectiveSpace(Rationals(),2);
-for H in D do
-C := Curve(P2,[H]);
-Sym:=[[-x,y,z],[x,-y,z],[x,y,-z]]; 
-for s in Sym do
- phi := iso<C -> C | s,s>; 
-G1 := AutomorphismGroup(C,[phi]);
-Q1,m1 := CurveQuotient(G1);
-assert Genus(Q1) ge 1 ;
-if RankBound(Jacobian(Q1)) eq 0 then
-    Q := Q1; m := m1;   
-end if;
-    print Q;
-	assert #Points(Q : Bound:=1000) eq #TorsionSubgroup(Jacobian(Q));
-    for i in [1..#Points(Q: Bound:=100)] do
-    RationalPoints(Difference(Pullback(m,Points(Q: Bound:=1000)[i]), BaseScheme(m)));
-end for;
-end if;
-end for;
+return Q_Points;
+end function;
+Q<x,y>:=PolynomialRing(Rationals(), 2);
+F:=3*x^4 - 2*x^2*y^2 - y^4 + 3*x^2 + y^2 + 1;
+ strategy_quotient_on_quartic(F); 
+ */
